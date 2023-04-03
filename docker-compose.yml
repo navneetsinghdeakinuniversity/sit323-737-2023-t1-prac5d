@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  app1:
+    image: nginx:latest
+    container_name: nginx_1
+    ports:
+      - "8080:80"
+    networks:
+      - my-network
+  app2:
+    image: mysql:latest
+    container_name: mysqldb
+    environment:
+      MYSQL_ROOT_PASSWORD: examplepassword
+    ports:
+      - "3306:3306"
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
